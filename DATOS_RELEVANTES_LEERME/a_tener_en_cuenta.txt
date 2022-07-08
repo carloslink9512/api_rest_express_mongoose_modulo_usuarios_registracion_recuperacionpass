@@ -1,0 +1,65 @@
+
+//...DETALLES INICIALES
+
+1. Sistema de servidor Api Rest para consumo de React (spa).
+2. Construido en Express sobre Node.js y en Mongoose sobre MongoDB.
+3. Este módulo contiene todo lo necesario para responder a las peticiones del cliente sobre:
+	Registración: formulario de registración, formulario de confirmación de registración. (React spa).
+	Recuperación de contraseña: formulario de solicitud de email, formulario de ingreso de código de verificación, formulario de ingreso y confirmación
+		de nueva contraseña. (React spa)
+
+//...ESTRUCTURA...
+
+1. El archivo principal es "app.js" del directorio raíz.
+2. El servidor está estructurado en módulos:
+    2.a. User Module o módulo de usuarios (principal)
+        2.a.1. Es el módulo principal.
+        2.a.2. Recibe peticiones desde el cliente (React).
+        2.a.3. Envía respuestas al cliente.
+        2.a.4. Todas las respuestas son codificadas. 
+        2.a.5. En algunas respuestas envía información adicional en formato json (objetos)
+        2.a.6. Estructura interna
+            2.a.6.1. app.js: archivo que comanda al módulo
+            2.a.6.2. route: carpeta que contiene el archivo con los enrutadores, separados por peticiones.
+            2.a.6.3. controller: carpeta que contiene los archivos controladores. Cada archivo está asociado a una petición del enrutador.
+            2.a.6.4. data_access/connection: carpeta que contiene el archivo con los parámetros de conexión. En este caso son los de MongoDB.
+            2.a.6.5. data_access/model: carpeta que contiene los modelos o modelados de datos. Esto es propio de Mongoose para MongoDB.
+            2.a.6.6. data_access/data: archivos con las funciones para interactuar con las diferentes colecciones. Cada archivo está relacionado a una colección determinada.
+            2.a.6.7. other/email: corresponden a los archivos para el envío de correos electrónicos automatizados. Mensajes para el usuario, traductores de idiomas y el archivo de configuración de la cuenta.
+    2.b. Error Module o módulo de errores (auxiliar)
+        2.b.1. Es un módulo auxiliar.
+        2.b.2. Su operatoria principal es la de registrar los errores codificados en una colección.
+        2.b.3. Esta información podrá ser consultada por el administrador desde el panel, también mediante peticiones.
+        2.b.4. Está disponible para asistir a todos los módulos que lo necesiten.
+    2.c. Other Module o módulo de otros (auxiliar)
+        2.c.1. Es un módulo que contiene funcionalidades especiales.
+        2.c.2. Las funciones están separadas en archivos de javascript.
+        2.c.3. Para este ejemplo solo tenemos una función para capturar el código IP del cliente.
+3. Cada módulo principal escucha en un puerto independiente.
+
+//...MISCELANEAS...
+
+1. Token: no es necesario.
+2. Cookies: no es necesario.
+3. Tiempo real: no es necesario.
+4. Los archivos para envíos de correos electrónicos tienen su propio traductor (translator). Esto permite controlar en qué idiomas traducir.
+5. Ver archivos adjuntos en DATOS_RELEVANTES_LEERME:
+    5.1. Este archivo, el que estamos leyendo.
+    5.2. Estructura de colecciones de datos usuarios.
+        5.2.1. Consiste en una tabla con los campos de las colecciones.
+    5.3. Sistema de codificación de errores y mensajes Usuarios.
+        5.3.1. Consiste en una tabla con los códigos, los detalles y las observaciones de los errores.
+        5.3.2. Dirigido para el sector de "desarrollo" con copia al sector de "mesa de ayuda".
+
+//...
+
+1. Este desarrollo es funcional.
+2. Agregar las siguientes librerías. Tener en cuenta las versiones.
+    2.a. express
+    2.b. cors
+    2.c. mongoose
+    2.d. nodemailer
+    2.e. nodemon para el entorno de desarrollo.
+    2.f. crypto-js para la encriptación de la contraseña.
+3. Ejemplo desarrollado para mi curriculum en linkedin.
+4. Para más información comunicarse por mensaje en linkedin, o al email: carloscoco9512@gmail.com
